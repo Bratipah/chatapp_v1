@@ -2,12 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client';
 import './App.css'
 import reportWebVitals from './reportWebVitals';
-import JobSearch from "./pages/JobSearch"
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/Home';
+import Chat from './components/Chat';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/search",
-    element: <JobSearch />,
+    element: <Chat />,
   },
 
 ]);
