@@ -1,6 +1,6 @@
 // import React from 'react';
 import { useContext } from "react";
-import { SignInContext } from "../context/googleSignInContext";
+import { SignInContext } from "../context/googleSignIn";
 
 function SignIn() {
     const {handleClick} = useContext(SignInContext)
