@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { auth } from '../firebase/fireBaseConfig'
+import {db,auth } from '../firebase/fireBaseConfig'
 import SendMessage from '../pages/SendMessage'
 import { collection, query, limit, orderBy, onSnapshot } from "firebase/firestore";
 
@@ -10,7 +10,7 @@ function Chat() {
 
   useEffect(() => {
         const q = query(
-          collection( "messages"),
+          collection(db, "messages"),
           orderBy("createdAt"),
           limit(50)
         );

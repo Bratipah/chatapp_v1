@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { auth } from '../firebase/fireBaseConfig'
+import {db, auth } from '../firebase/fireBaseConfig'
 import { collection, addDoc, serverTimestamp} from "firebase/firestore";
 
 function SendMessage() {
     const [msg, setMsg] = useState('')
-    const messagesRef = collection( "messages");
+    const messagesRef = collection(db, "messages");
   
        const sendMsg = async () => {
         const { uid, photoURL } = auth.currentUser
