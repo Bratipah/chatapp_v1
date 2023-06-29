@@ -17,7 +17,6 @@ function Navbar() {
        <a className="mr-5">Messages</a>
        <a className="mr-5">Sign In</a>
      </div>
-     <button className="inline-flex items-center bg-yellow-500 border-0 py-1 px-3 mt-4 md:mt-0">Get Started</button>
 </div>
     </>
   )

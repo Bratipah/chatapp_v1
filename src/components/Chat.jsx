@@ -17,7 +17,7 @@ function Chat() {
         const data = onSnapshot(q, (QuerySnapshot) => {
               let messages = [];
               QuerySnapshot.forEach((doc) => {
-                messages.push({ ...doc.data(), id: doc.id });
+                messages.push({ ...doc.data(), id: doc.id,userID });
               });
               setMessages(messages) 
           

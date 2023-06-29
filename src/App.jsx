@@ -7,16 +7,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/Home';
-import Chat from './components/Chat';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />
-  },
-  {
-    path: "/search",
-    element: <Chat />,
   },
 
 ]);
