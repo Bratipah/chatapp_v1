@@ -1,14 +1,16 @@
-// import React from "react";
-
-import SignIn from '../auth/signIn';
-import '../App.css'
+import React from "react";
+import { AuthContextProvider } from '../context/AuthContext';
+import Navbar from "../components/Navbar";
 
 function Home() {
   
     return (
       <>
         <div>
-          <SignIn/>
+        <AuthContextProvider>
+          <Navbar />
+          <h1  className='text-center text-3xl font-bold py-8'>Wii Chat</h1>
+        </AuthContextProvider>
         </div>
       </>
     );
