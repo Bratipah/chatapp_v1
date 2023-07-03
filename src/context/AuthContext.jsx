@@ -1,7 +1,8 @@
-import { useContext, createContext, useEffect, useState } from 'react';
+/* eslint-disable react/prop-types */
+import { createContext, useEffect, useState } from 'react';
 import {
   GoogleAuthProvider,
-  signInWithPopup,
+  // signInWithPopup,
   signInWithRedirect,
   signOut,
   onAuthStateChanged,
@@ -10,7 +11,7 @@ import { auth } from '../firebase/fireBaseConfig';
 
 const AuthContext = createContext();
 
-export const AuthContextProvider = ({ children }) => {
+ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const googleSignIn = () => {
@@ -39,7 +40,4 @@ export const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export const UserAuth = () => {
-  return useContext(AuthContext);
-};
+ export {AuthContext,AuthContextProvider};
