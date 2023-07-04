@@ -1,44 +1,29 @@
-import { useState, useEffect } from 'react'
-import {db,auth } from '../firebase/fireBaseConfig'
-import SendMessage from '../pages/SendMessage'
-import { collection, query, limit, orderBy, onSnapshot } from "firebase/firestore";
+/* eslint-disable no-unused-vars */
+import React, { useContext } from "react";
+import Cam from "../img/cam.png";
+import Add from "../img/add.png";
+import More from "../img/more.png";
+import Messages from "./Messages";
+import Input from "./Input";
+import { ChatContext } from "../context/ChatContext";
 
-function Chat() {
-    const [messages, setMessages] = useState([])
-    const { userID } = auth.currentUser
-  
+const Chat = () => {
+  const { data } = useContext(ChatContext);
 
-  useEffect(() => {
-        const q = query(
-          collection(db, "messages"),
-          orderBy("createdAt"),
-          limit(50)
-        );
-        const data = onSnapshot(q, (QuerySnapshot) => {
-              let messages = [];
-              QuerySnapshot.forEach((doc) => {
-                messages.push({ ...doc.data(), id: doc.id });
-              });
-              setMessages(messages) 
-          
-        });
-        return () => data; 
-   
-  }, []);
- 
-    return (
-           <div>
-             <button onClick={() => auth.signOut()}>Sign Out</button>
-              {messages && messages.map((message, id,  ) => 
-                 <div 
-               key={id} 
-               className={`msg ${userID === auth.currentUser.uid ? 'sent' : 'received'}`}>
-                  <img src={message.photoURL} />
-                  <p>{message.text}</p>
-               </div>
-              )} 
-           <SendMessage />
-         </div>
-    )
-}
-export default Chat
+  return (
+    <div className="chat">
+      <div className="chatInfo">
+        <span>{data.user?.displayName}</span>
+        <div className="chatIcons">
+          <img src={Cam} alt="" />
+          <img src={Add} alt="" />
+          <img src={More} alt="" />
+        </div>
+      </div>
+      <Messages />
+      <Input/>
+    </div>
+  );
+};
+
+export default Chat;
