@@ -11,7 +11,7 @@ import { auth } from '../firebase/fireBaseConfig';
 
 const AuthContext = createContext();
 
-export const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = ({ children }) => {
   // const [user, setUser] = useState({});
  const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
@@ -42,4 +42,5 @@ export const AuthContextProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+ };
  export {AuthContext,AuthContextProvider};
