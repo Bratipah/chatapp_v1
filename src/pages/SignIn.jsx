@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useEffect } from 'react';
 import { GoogleButton } from 'react-google-button';
  import { UserAuth } from '../context/AuthContext';
@@ -6,6 +7,16 @@ import { GoogleButton } from 'react-google-button';
 const Signin = () => {
   const { googleSignIn, user } = UserAuth();
   // const navigate = useNavigate();
+=======
+import  { useContext, useEffect } from 'react';
+import { GoogleButton } from 'react-google-button';
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
+const Signin = () => {
+  const { googleSignIn, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+>>>>>>> 5327f8dc1ed0d9ffea15f311e1e81ce755dc5379
 
   const handleGoogleSignIn = async () => {
     try {
