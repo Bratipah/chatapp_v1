@@ -4,30 +4,43 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase/fireBaseConfig";
+<<<<<<< HEAD
+=======
+import { onAuthStateChanged } from "firebase/auth";
+>>>>>>> 3d9f7e514f63bba465bc0602cfb619216d428b11
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
 
-  const { user } = useContext(AuthContext);
+  const { User } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
 
   useEffect(() => {
     const getChats = () => {
-      const unsub = onSnapshot(doc(db, "userChats", user.uid), (doc) => {
-        setChats(doc.data());
-      });
-
-      return () => {
-        unsub();
-      };
+      if (User && User.uid) {
+        const unsub = onSnapshot(doc(db, "userChats", User.uid), (doc) => {
+          if (doc.exists()) { // Check if the document exists
+            setChats(doc.data());
+          } else {
+            setChats([]); // Set an empty array if the document doesn't exist
+          }
+        });
+        return () => {
+          unsub();
+        };
+      }
     };
-
-    user.uid && getChats();
-  }, [user.uid]);
+  
+    getChats();
+  }, [User]);
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
+
+  if (!User || !User.uid) {
+    return <div>Loading...</div>; // Add a loading state or return null while user is being fetched
+  }
 
   return (
     <div className="chats">
@@ -35,11 +48,11 @@ const Chats = () => {
         <div
           className="userChat"
           key={chat[0]}
-          onClick={() => handleSelect(chat[1].user)}
+          onClick={() => handleSelect(chat[1].User)}
         >
-          <img src={chat[1].user.photoURL} alt="" />
+          <img src={chat[1].User.photoURL} alt="" />
           <div className="userChatInfo">
-            <span>{chat[1].user.displayName}</span>
+            <span>{chat[1].User.displayName}</span>
             <p>{chat[1].lastMessage?.text}</p>
           </div>
         </div>

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
-import Img from "../img/img.png";
-import Attach from "../img/attach.png";
+import Img from "../assets/img/img.png";
+import Attach from "../assets/img/attach.png";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import {
@@ -19,7 +19,7 @@ const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
 
-  const { user } = useContext(AuthContext);
+  const { User } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
@@ -38,7 +38,7 @@ const Input = () => {
               messages: arrayUnion({
                 id: uuid(),
                 text,
-                senderId: user.uid,
+                senderId: User.uid,
                 date: Timestamp.now(),
                 img: downloadURL,
               }),
@@ -51,20 +51,20 @@ const Input = () => {
         messages: arrayUnion({
           id: uuid(),
           text,
-          senderId: user.uid,
+          senderId: User.uid,
           date: Timestamp.now(),
         }),
       });
     }
 
-    await updateDoc(doc(db, "userChats", user.uid), {
+    await updateDoc(doc(db, "userChats", User.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
-    await updateDoc(doc(db, "userChats", data.user.uid), {
+    await updateDoc(doc(db, "userChats", data.User.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
       },

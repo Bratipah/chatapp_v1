@@ -5,7 +5,7 @@ import { collection, query, limit, orderBy, onSnapshot } from "firebase/firestor
 
 function Chat() {
     const [messages, setMessages] = useState([])
-    const { userID } = auth.currentUser
+    const { userID } = auth.User
   
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function Chat() {
               {messages && messages.map((message, id,  ) => 
                  <div 
                key={id} 
-               className={`msg ${userID === auth.currentUser.uid ? 'sent' : 'received'}`}>
+               className={`msg ${userID === auth.User.uid ? 'sent' : 'received'}`}>
                   <img src={message.photoURL} />
                   <p>{message.text}</p>
                </div>

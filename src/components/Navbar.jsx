@@ -2,29 +2,36 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Signin from '../pages/SignIn';
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { User } = useContext(AuthContext);
+  console.log(User);
 
-  const handleSignOut = async () => {
-    try {
-      await logOut()
-    } catch (error) {
-      console.log(error)
-    }
+  const handleSignOut =  () => {
+    localStorage.removeItem('Email')
+    window.location.reload()
   }
 
   return (
-    <div className='flex justify-between bg-gray-200 w-full p-4'>
-      <h1 className='text-center text-2xl font-bold'>
-        Firebase Google Auth & Context
-      </h1>
-      {user?.displayName ? (
-        <button onClick={handleSignOut}>Logout</button>
-      ) : (
-        <Link to='/signin'>Sign in</Link>
-      )}
-    </div>
+    <>
+    {User === null ?
+      <Signin/>
+      :
+      <>
+        <div  className="hero min-h-screen bg-base-200">
+          <div className="hero-content text-center">
+            <div className="max-w-md">
+            <p className="py-6">
+            <Link to={"/chats"}><a className="btn btn-ghost normal-case text-xl text-emerald-400">Chats</a></Link>
+            <button onClick={handleSignOut} className="btn btn-ghost normal-case text-xl text-emerald-400">Logout</button>
+            </p>
+            </div>
+          </div>
+        </div>
+     </>
+        }
+    </>
   );
 };
 
