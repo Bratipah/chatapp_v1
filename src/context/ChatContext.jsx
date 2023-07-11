@@ -6,10 +6,10 @@ import {
   } from "react";
   import { AuthContext } from "./AuthContext";
   
-  export const ChatContext = createContext();
+  const ChatContext = createContext();
   
-  export const ChatContextProvider = ({ children }) => {
-    const { currentUser } = useContext(AuthContext);
+  const ChatContextProvider = ({ children }) => {
+    const { User } = useContext(AuthContext);
     const INITIAL_STATE = {
       chatId: "null",
       user: {},
@@ -21,9 +21,9 @@ import {
           return {
             user: action.payload,
             chatId:
-              currentUser.uid > action.payload.uid
-                ? currentUser.uid + action.payload.uid
-                : action.payload.uid + currentUser.uid,
+              User.uid > action.payload.uid
+                ? User.uid + action.payload.uid
+                : action.payload.uid + User.uid,
           };
   
         default:
@@ -39,3 +39,4 @@ import {
       </ChatContext.Provider>
     );
   };
+  export {ChatContext, ChatContextProvider};

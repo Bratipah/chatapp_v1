@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 
 const Message = ({ message }) => {
-  const { user } = useContext(AuthContext);
+  const { User } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
   const ref = useRef();
@@ -17,14 +17,14 @@ const Message = ({ message }) => {
   return (
     <div
       ref={ref}
-      className={`message ${message.senderId === user.uid && "owner"}`}
+      className={`message ${message.senderId === User.uid && "owner"}`}
     >
       <div className="messageInfo">
         <img
           src={
-            message.senderId === user.uid
-              ? user.photoURL
-              : data.user.photoURL
+            message.senderId === User.uid
+              ? User.photoURL
+              : data.User.photoURL
           }
           alt=""
         />

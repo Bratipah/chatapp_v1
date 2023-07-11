@@ -8,7 +8,7 @@ function SendMessage() {
     const messagesRef = collection(db, "messages");
   
        const sendMsg = async () => {
-        const { uid, photoURL } = auth.currentUser
+        const { uid, photoURL } = auth.User
         
         await addDoc(messagesRef, {
             text: msg,
