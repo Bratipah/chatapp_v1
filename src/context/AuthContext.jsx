@@ -12,7 +12,7 @@ import { auth } from '../firebase/fireBaseConfig';
 const AuthContext = createContext();
 
  const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [User, setUser] = useState({});
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -39,4 +39,5 @@ const AuthContext = createContext();
       {children}
     </AuthContext.Provider>
   );
- export {AuthContext,AuthContextProvider};
+ }
+ export {AuthContext, AuthContextProvider};

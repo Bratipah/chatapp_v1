@@ -1,17 +1,9 @@
 
 // import React, { useEffect } from 'react';
 import { GoogleButton } from 'react-google-button';
- import { UserAuth } from '../context/AuthContext';
+ import { AuthContext } from '../context/AuthContext';
 // import { useNavigate } from 'react-router-dom';
 
-const Signin = () => {
-  const { googleSignIn, user } = UserAuth();
-  // const navigate = useNavigate();
-=======
-import  { useContext, useEffect } from 'react';
-import { GoogleButton } from 'react-google-button';
-import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
   const { googleSignIn, user } = useContext(AuthContext);
@@ -42,4 +34,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signin

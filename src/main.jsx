@@ -11,6 +11,7 @@ import Account from './pages/Account';
 import SignIn from './pages/SignIn';
 import Protected from './components/Protected';
 import { AuthContextProvider } from "./context/AuthContext";
+import Chat from './components/OldChat';
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/account",
     element:<Protected> <Account/></Protected>
+  },
+  {
+    path: "/chats",
+    element: <Chat />
   },
   
 
