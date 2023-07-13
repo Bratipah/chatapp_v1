@@ -4,21 +4,18 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   //signInWithRedirect,
-  signOut,
+  // signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { auth } from '../firebase/fireBaseConfig';
+import { auth,db } from '../firebase/fireBaseConfig';
 
 const AuthContext = createContext();
 
  const AuthContextProvider = ({ children }) => {
   const [User, setUser] = useState({});
-<<<<<<< HEAD
-=======
   const [userName, setUserName] = useState("");
   const [photoURL, setPhotoUrl] = useState("");
   const [uid, setUid] = useState("");
->>>>>>> 3d9f7e514f63bba465bc0602cfb619216d428b11
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -67,10 +64,5 @@ const AuthContext = createContext();
       {children}
     </AuthContext.Provider>
   );
-<<<<<<< HEAD
  }
  export {AuthContext, AuthContextProvider};
-=======
- };
- export {AuthContext,AuthContextProvider};
->>>>>>> 3d9f7e514f63bba465bc0602cfb619216d428b11
